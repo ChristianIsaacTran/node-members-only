@@ -9,28 +9,31 @@
 <body>
     <main>
         <h1>Sign up here!</h1>
+        <% if(err) { %>
+            <%- include("./partials/signupError") %>
+        <% } %>
         <form action="/signup" method="post" class="signup-form">
             <div>
                 <label for="firstName">First name:</label>
-                <input type="text" name="firstName" id="firstName">
+                <input type="text" name="firstName" id="firstName" placeholder="First Name" value="<%= prevInput ? prevInput.firstName : "" %>">
             </div>
             <div>
                 <label for="lastName">Last name:</label>
-                <input type="text" name="lastName" id="lastName">
+                <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="<%= prevInput ? prevInput.lastName : "" %>">
             </div>
             <div>
                 <label for="username">Username:</label>
-                <input type="text" name="username" id="username">
+                <input type="text" name="username" id="username" placeholder="Username" value="<%= prevInput ? prevInput.username : "" %>">
             </div>
             <div>
                 <label for="password">Password:</label>
-                <input type="text" name="password" id="password">
+                <input type="password" name="password" id="password" placeholder="Password" value="<%= prevInput ? prevInput.password : "" %>">
             </div>
             <div>
                 <label for="passwordConfirm">Password Confirmation:</label>
-                <input type="text" name="passwordConfirm" id="passwordConfirm">
+                <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Password Confirmation">
             </div>
-            
+
             <button type="submit">Submit</button>
         </form>
     </main>

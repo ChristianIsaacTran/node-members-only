@@ -5,6 +5,8 @@ const usersTableQuery = `
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
         username VARCHAR(255),
+        first_name VARCHAR(255),
+        last_name VARCHAR(255),
         password VARCHAR,
         membership_status BOOL,
         admin_status BOOL

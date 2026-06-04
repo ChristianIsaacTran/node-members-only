@@ -1,0 +1,11 @@
+<head>
+    <link rel="stylesheet" href="signupError.css">
+</head>
+<div class="signup-error-group">
+    <h1>Form Error: </h1>
+    <ul>
+    <% errArr.forEach((validationErr) => { %>
+        <li><%= validationErr.msg %></li>
+    <% }) %>
+    </ul>
+</div>
