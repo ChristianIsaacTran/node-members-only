@@ -1,10 +1,10 @@
 const {Router} = require("express");
 
+const signupController = require("../controllers/signupController");
+
 const signupRouter = Router();
 
-signupRouter.get("/", (req,res) => {
-    res.send("signup Route <a href='/'>go home</a>");
-});
+signupRouter.get("/", signupController.signupUser);
 
 
 

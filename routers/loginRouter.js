@@ -1,11 +1,10 @@
 const {Router} = require("express");
 
+const loginController = require("../controllers/loginController");
+
 const loginRouter = Router();
 
-
-loginRouter.post("/", (req,res) => {
-    res.send("login Route <a href='/'>Back to home</a>");
-});
+loginRouter.post("/", loginController.loginUser);
 
 
 
