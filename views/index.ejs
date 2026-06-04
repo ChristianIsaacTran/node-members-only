@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
-</head>
-<body>
-    <h1>
-        <h1>DB connection test:</h1>
-        <%= records %>
-    </h1>
-</body>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <main>
+        <h1>Current Status: Not logged in (will change later with conditional)</h1>
+        <form action="/login" method="post">
+            <h1>Log in:</h1>
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" placeholder="username here">
+                <label for="password">Password:</label>
+                <input type="text" name="password" id="password" placeholder="password here">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        <a href="/signup" class="sign-up-link">Not registered? Sign up here</a>
+      <h1>Messages to be displayed goes here:</h1>
+    </main>
+  </body>
 </html>
