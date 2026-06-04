@@ -4,8 +4,8 @@ const LocalStrategy = require("passport-local").Strategy;
 const sessionStore = require("connect-pg-simple")(session);
 const db = require("../models/queries");
 
-async function signupUser(req, res) {
-    res.send("signup route");
+async function renderSignupForm(req, res) {
+    res.render("signup", {});
 }
 
-module.exports = {signupUser};
+module.exports = {renderSignupForm};
