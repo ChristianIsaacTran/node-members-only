@@ -63,7 +63,7 @@ https://www.theodinproject.com/lessons/node-path-nodejs-members-only
       messages table:
       - author (username)
       - title of message
-      - message content 
+      - message content
       - timestamp of when message was made
 
       membership password table:
@@ -75,5 +75,15 @@ https://www.theodinproject.com/lessons/node-path-nodejs-members-only
       Sessions table:
       (user sessions get stored here from connect-pg-simple and passport)
 
+- Going to use a universal salting of 10
 
+## Membership pass and Admin pass
 
+- Will denote the plaintext passwords here, but will store them into
+  the database as hashed passwords with bcryptjs, and compare hashes with bcryptjs.compare()
+
+- Membership password: 1234
+
+- Admin password: 1010
+
+- both are salted for 10
