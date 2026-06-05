@@ -27,15 +27,16 @@
             </div>
             <div>
                 <label for="password">Password:</label>
-                <input type="password" name="password" id="password" placeholder="Password" value="<%= prevInput ? prevInput.password : "" %>">
+                <input type="password" name="password" id="password" placeholder="Password" value="<%= prevInput ? prevInput.password : "" %>" autocomplete="off">
             </div>
             <div>
                 <label for="passwordConfirm">Password Confirmation:</label>
-                <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Password Confirmation">
+                <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Password Confirmation" autocomplete="off">
             </div>
 
             <button type="submit">Submit</button>
         </form>
+        <a href="/">Back to home</a>
     </main>
 </body>
 </html>
