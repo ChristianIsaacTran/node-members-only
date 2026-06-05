@@ -4,6 +4,7 @@ const indexRouter = require("./routers/indexRouter");
 const loginRouter = require("./routers/loginRouter");
 const signupRouter = require("./routers/signupRouter");
 const logoutRouter = require("./routers/logoutRouter");
+const membershipRouter = require("./routers/membershipRouter");
 const sessionConfig = require("./config/sessionConfig");
 const passport = require("./config/passportConfig");
 
@@ -25,6 +26,7 @@ app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/signup", signupRouter);
 app.use("/logout", logoutRouter);
+app.use("/membership", membershipRouter);
 
 
 const port = process.env.DEFAULT_PORT || 3000;

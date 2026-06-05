@@ -35,48 +35,95 @@ async function addUser(validData) {
 
     console.log("Added user to db successfully.");
   } catch (error) {
-    console.log("Error: User not added to db through signup.")
+    console.log("Error: User not added to db through signup.");
     throw new Error(error);
   }
 }
 
 // find user with username, returns the user. This is assuming that each user cannot have the same username (case sensitive)
 async function findUserThroughUsername(usernameSearch) {
-  const findUserQuery = `
+  try {
+    const findUserQuery = `
   SELECT * FROM users
   WHERE username = ($1);
   `;
 
-  const {rows} = await pool.query(findUserQuery, [usernameSearch]);
+    const { rows } = await pool.query(findUserQuery, [usernameSearch]);
 
-  if(rows.length === 0) {
-    console.log("Error: no user found through username.");
-    return false;
-  } 
+    if (rows.length === 0) {
+      console.log("Error: no user found through username.");
+      return false;
+    }
 
-  return rows[0];
+    return rows[0];
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
-// find user with ID, returns the user. 
+// find user with ID, returns the user.
 async function findUserThroughID(idSearch) {
-  const findUserQuery = `
+  try {
+    const findUserQuery = `
   SELECT * FROM users
   WHERE id = ($1);
   `;
 
-  const {rows} = await pool.query(findUserQuery, [idSearch]);
+    const { rows } = await pool.query(findUserQuery, [idSearch]);
 
-  if(rows.length === 0) {
-    console.log("Error: no user found through id.");
-    return false;
+    if (rows.length === 0) {
+      console.log("Error: no user found through id.");
+      return false;
+    }
+
+    return rows[0];
+  } catch (error) {
+    throw new Error(error);
   }
-
-  return rows[0];
 }
 
+// gets the membership hashed password
+async function getMemberPass() {
+  try {
+    const memberPassQuery = `
+  SELECT password FROM member_pass;
+  `;
+
+    const { rows } = await pool.query(memberPassQuery);
+
+    if(rows.length === 0) {
+      throw new Error("Error: membership password not found in DB.");
+    }
+
+    return rows[0].password;
+
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+// changes membership status to true for the current user
+async function makeUserMember(username) {
+  try {
+    const updateMemberQuery = `
+    UPDATE users
+    SET membership_status = true
+    WHERE username = ($1);
+    `;
+
+    await pool.query(updateMemberQuery, [username]);
+
+    console.log("Updated membership status to true.");
+
+  } catch (error) {
+    throw new Error(error);
+  }
+}
 
 module.exports = {
   addUser,
   findUserThroughUsername,
   findUserThroughID,
+  getMemberPass,
+  makeUserMember,
 };

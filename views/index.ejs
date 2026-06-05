@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="/index.css">
   </head>
   <body>
     <main>
@@ -20,12 +20,17 @@
                     <button type="submit">Submit</button>
                 </div>
             </form>
+            <a href="/signup" class="sign-up-link">Not registered? Sign up here</a>
         <% } else { %>
             <h1>Current Status: Logged in</h1>
             <h1>Welcome <%= user.username%></h1>
+            <div class="user-status">
+                <h3>Membership Status: <%= user.membership_status %></h1>
+                <h3>Admin Status: <%= user.admin_status %></h1>
+            </div>
             <a href="/logout" class="log-out-link">Log out</a>
+            <a href="/membership" class="membership-link">Become a member</a>
         <% } %>
-        <a href="/signup" class="sign-up-link">Not registered? Sign up here</a>
       <h1>Messages to be displayed goes here:</h1>
     </main>
   </body>
