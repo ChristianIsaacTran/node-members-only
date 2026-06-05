@@ -9,20 +9,21 @@
   <body>
     <main>
         <% if(!user) { %>
-            <h1>Current Status: Not logged in (will change later with conditional)</h1>
+            <h1>Current Status: Not logged in</h1>
             <form action="/login" method="post">
                 <h1>Log in:</h1>
                 <div class="input-group">
                     <label for="username">Username:</label>
                     <input type="text" name="username" id="username" placeholder="username here">
                     <label for="password">Password:</label>
-                    <input type="text" name="password" id="password" placeholder="password here">
+                    <input type="password" name="password" id="password" placeholder="password here">
                     <button type="submit">Submit</button>
                 </div>
             </form>
         <% } else { %>
             <h1>Current Status: Logged in</h1>
             <h1>Welcome <%= user.username%></h1>
+            <a href="/logout" class="log-out-link">Log out</a>
         <% } %>
         <a href="/signup" class="sign-up-link">Not registered? Sign up here</a>
       <h1>Messages to be displayed goes here:</h1>
