@@ -120,10 +120,50 @@ async function makeUserMember(username) {
   }
 }
 
+// get admin hashed pass
+async function getAdminPass() {
+  try {
+    const adminPassQuery = `
+  SELECT password FROM admin_pass;
+  `;
+
+    const { rows } = await pool.query(adminPassQuery);
+
+    if(rows.length === 0) {
+      throw new Error("Error: admin password not found in DB.");
+    }
+
+    return rows[0].password;
+
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+// changes admin status to true for the current user
+async function makeUserAdmin(username) {
+  try {
+    const updateAdminQuery = `
+    UPDATE users
+    SET admin_status = true
+    WHERE username = ($1);
+    `;
+
+    await pool.query(updateAdminQuery, [username]);
+
+    console.log("Updated admin status to true.");
+
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
 module.exports = {
   addUser,
   findUserThroughUsername,
   findUserThroughID,
   getMemberPass,
   makeUserMember,
+  getAdminPass,
+  makeUserAdmin
 };

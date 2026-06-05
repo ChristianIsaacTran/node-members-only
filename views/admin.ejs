@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="/admin.css">
+</head>
+<body>
+    <% if(validCheck) { %>
+        <% if(!adminPassResult) { %>
+            <h1 class="admin-error">Admin password incorrect. No admin status.</h1>
+        <% } %>
+    <% } %>
+    <h1>Enter in admin password to become an admin: </h1>
+    <form action="/admin" method="post">
+        <label for="adminPass">Admin Password:</label>
+        <input type="password"  name="adminPass" id="adminPass" autocomplete="off">
+        <button type="submit">Submit</button>
+    </form>
+    <a href="/">Back to home</a>
+</body>
+</html>
