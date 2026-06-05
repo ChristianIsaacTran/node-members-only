@@ -40,6 +40,43 @@ async function addUser(validData) {
   }
 }
 
+// find user with username, returns the user. This is assuming that each user cannot have the same username (case sensitive)
+async function findUserThroughUsername(usernameSearch) {
+  const findUserQuery = `
+  SELECT * FROM users
+  WHERE username = ($1);
+  `;
+
+  const {rows} = await pool.query(findUserQuery, [usernameSearch]);
+
+  if(rows.length === 0) {
+    console.log("Error: no user found through username.");
+    return false;
+  } 
+
+  return rows[0];
+}
+
+// find user with ID, returns the user. 
+async function findUserThroughID(idSearch) {
+  const findUserQuery = `
+  SELECT * FROM users
+  WHERE id = ($1);
+  `;
+
+  const {rows} = await pool.query(findUserQuery, [idSearch]);
+
+  if(rows.length === 0) {
+    console.log("Error: no user found through id.");
+    return false;
+  }
+
+  return rows[0];
+}
+
+
 module.exports = {
   addUser,
+  findUserThroughUsername,
+  findUserThroughID,
 };
