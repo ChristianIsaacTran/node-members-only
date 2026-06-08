@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Message</title>
+    <link rel="stylesheet" href="/messageForm.css">
+  </head>
+  <body>
+    <% if(errorFound) { %>
+        <%- include("./partials/createMessageError") %>
+    <% } %>
+    <h1>Create Message: </h1>
+    <form action="/message" method="post">
+        <label for="messageTitle">Title of Message: </label>
+        <input type="text" name="messageTitle" id="messageTitle" maxlength="50" value="<%= prevInput ? prevInput.messageTitle : "" %>">
+        <label for="messageContent">Message: </label>
+        <textarea name="messageContent" id="messageContent"  maxlength="255" placeholder="Message text goes here..." ><%= prevInput ? prevInput.messageContent : "" %></textarea>
+        <button type="submit">submit</button>
+    </form>
+    <a href="/" class="home-link">Back to home</a>
+  </body>
+</html>

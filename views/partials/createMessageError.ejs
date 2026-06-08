@@ -1,0 +1,11 @@
+<head>
+    <link rel="stylesheet" href="/createMessageError.css">
+</head>
+<div class="error-group">
+    <h3 class="error-title">Form Submit Error: </h3>
+    <ul>
+    <% errorArr.forEach((err) => { %>
+        <li><%= err.msg %></li>
+    <% }); %>
+    </ul>
+</div>

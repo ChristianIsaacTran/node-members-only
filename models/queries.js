@@ -91,12 +91,11 @@ async function getMemberPass() {
 
     const { rows } = await pool.query(memberPassQuery);
 
-    if(rows.length === 0) {
+    if (rows.length === 0) {
       throw new Error("Error: membership password not found in DB.");
     }
 
     return rows[0].password;
-
   } catch (error) {
     throw new Error(error);
   }
@@ -114,7 +113,6 @@ async function makeUserMember(username) {
     await pool.query(updateMemberQuery, [username]);
 
     console.log("Updated membership status to true.");
-
   } catch (error) {
     throw new Error(error);
   }
@@ -129,12 +127,11 @@ async function getAdminPass() {
 
     const { rows } = await pool.query(adminPassQuery);
 
-    if(rows.length === 0) {
+    if (rows.length === 0) {
       throw new Error("Error: admin password not found in DB.");
     }
 
     return rows[0].password;
-
   } catch (error) {
     throw new Error(error);
   }
@@ -152,7 +149,31 @@ async function makeUserAdmin(username) {
     await pool.query(updateAdminQuery, [username]);
 
     console.log("Updated admin status to true.");
+  } catch (error) {
+    throw new Error(error);
+  }
+}
 
+// adds a new message with timestamp and user to database
+async function addMessage(validatedData, messageAuthor) {
+  try {
+    const addMessageQuery = `
+  INSERT INTO messages(title, message, create_time, author)
+  VALUES
+    ($1,
+    $2,
+    $3,
+    $4);
+  `;
+
+    const messageTitle = validatedData.messageTitle;
+    const messageContent = validatedData.messageContent;
+    const currentTime = new Date().toLocaleString(); //current local host machine time stamp with date and time
+
+    await pool.query(addMessageQuery, [messageTitle, messageContent, currentTime, messageAuthor]);
+
+    return console.log("Message added to database.");
+    
   } catch (error) {
     throw new Error(error);
   }
@@ -165,5 +186,6 @@ module.exports = {
   getMemberPass,
   makeUserMember,
   getAdminPass,
-  makeUserAdmin
+  makeUserAdmin,
+  addMessage,
 };

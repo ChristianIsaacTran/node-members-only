@@ -16,10 +16,10 @@ const usersTableQuery = `
 const messagesTableQuery = `
     CREATE TABLE IF NOT EXISTS messages (
         id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-        username VARCHAR(255),
-        password VARCHAR,
-        membership_status BOOL,
-        admin_status BOOL
+        title VARCHAR(50),
+        message VARCHAR(255),
+        create_time TIMESTAMP WITH TIME ZONE, 
+        author VARCHAR(255)
     );`;
 
 const memberPassTableQuery = `
