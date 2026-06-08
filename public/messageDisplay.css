@@ -1,0 +1,43 @@
+.message-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.message-container > li {
+    display: flex;
+    flex-direction: column;
+    border: 5px solid rgba(31, 31, 31, 0.671);
+    border-radius: 10px;
+    max-width: 30%;
+    align-items: center;
+    background-color: rgb(15, 15, 15);
+    color: white;
+    gap: 30px;
+    box-shadow: 0px 0px 30px -10px white;
+    overflow-wrap: anywhere;
+}
+
+li > h2 {
+    border-bottom: 5px rgba(49, 49, 49, 0.671) solid;
+    width: 100%;
+    text-align: center;
+}
+
+li > h5 {
+    border-top: 5px rgba(49, 49, 49, 0.671) solid;
+    width: 100%;
+    text-align: center;
+}
+
+li > div {
+    display: flex;
+    border-top: 5px rgba(49, 49, 49, 0.671) solid;
+    width: 100%;
+    justify-content: center;
+}
+
+.message-footer-group {
+    display: flex;
+    gap: 15px;
+}

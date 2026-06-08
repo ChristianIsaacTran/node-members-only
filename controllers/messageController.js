@@ -20,8 +20,6 @@ async function messageValidate(req, res) {
 
     const validatedData = matchedData(req);
 
-    console.log(validatedData);
-
     // get message author and data, send to database query in models
     const messageAuthor = req.user.username;
 

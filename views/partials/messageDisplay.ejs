@@ -1,6 +1,9 @@
+ <head>
+    <link rel="stylesheet" href="/messageDisplay.css">
+ </head>
  <% if(!user || (user && user.membership_status === false && user.admin_status === false)) { %>
         <!-- non-logged-in user or a user that is logged-in, but not a member or an admin -->
-         <ul>
+         <ul class="message-container">
         <% messageArr.forEach((message) => { %>
            <li>
               <h2><%= message.title %></h2>
@@ -11,7 +14,7 @@
         </ul>
       <% } else if(user && user.membership_status === true && user.admin_status === false) {%>
         <!-- logged-in user, with membership, no admin -->
-         <ul>
+         <ul class="message-container">
         <% messageArr.forEach((message) => { %>
            <li>
               <h2><%= message.title %></h2>
@@ -25,7 +28,7 @@
         </ul>
       <% } else if(user && user.membership_status === true && user.admin_status === true) { %>
         <!-- logged-in user, with membership AND admin -->
-          <ul>
+          <ul class="message-container">
         <% messageArr.forEach((message) => { %>
            <li>
               <h2><%= message.title %></h2>
@@ -40,7 +43,7 @@
         </ul>
       <% } else if(user && user.membership_status === false && user.admin_status === true) { %>
         <!-- logged-in user, no membership, with admin -->
-         <ul>
+         <ul class="message-container">
         <% messageArr.forEach((message) => { %>
            <li>
               <h2><%= message.title %></h2>
