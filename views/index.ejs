@@ -34,6 +34,12 @@
             <a href="/message" class="create-message-link">Create a message</a>
         <% } %>
       <h1>Messages to be displayed goes here:</h1>
+      <% if(messageArr.length === 0) { %>
+        <!-- no messages in database -->
+        <h2>Create some messages!</h2>
+      <% } else {%>
+          <%- include("./partials/messageDisplay") %>
+      <% } %>
     </main>
   </body>
 </html>

@@ -1,0 +1,55 @@
+ <% if(!user || (user && user.membership_status === false && user.admin_status === false)) { %>
+        <!-- non-logged-in user or a user that is logged-in, but not a member or an admin -->
+         <ul>
+        <% messageArr.forEach((message) => { %>
+           <li>
+              <h2><%= message.title %></h2>
+              <p><%= message.message %></p>
+              <h5><%= new Date(message.create_time).toLocaleString()%></h5>
+           </li>
+        <% }) %>
+        </ul>
+      <% } else if(user && user.membership_status === true && user.admin_status === false) {%>
+        <!-- logged-in user, with membership, no admin -->
+         <ul>
+        <% messageArr.forEach((message) => { %>
+           <li>
+              <h2><%= message.title %></h2>
+              <p><%= message.message %></p>
+              <div class="message-footer-group">
+                <h5><%= message.author %></h5>
+                <h5><%= new Date(message.create_time).toLocaleString()%></h5>
+              </div>
+           </li>
+        <% }) %>
+        </ul>
+      <% } else if(user && user.membership_status === true && user.admin_status === true) { %>
+        <!-- logged-in user, with membership AND admin -->
+          <ul>
+        <% messageArr.forEach((message) => { %>
+           <li>
+              <h2><%= message.title %></h2>
+              <p><%= message.message %></p>
+              <div class="message-footer-group">
+                <h5><%= message.author %></h5>
+                <h5><%= new Date(message.create_time).toLocaleString()%></h5>
+                <a href="/delete">Delete Message</a>
+              </div>
+           </li>
+        <% }) %>
+        </ul>
+      <% } else if(user && user.membership_status === false && user.admin_status === true) { %>
+        <!-- logged-in user, no membership, with admin -->
+         <ul>
+        <% messageArr.forEach((message) => { %>
+           <li>
+              <h2><%= message.title %></h2>
+              <p><%= message.message %></p>
+              <div class="message-footer-group">
+                <h5><%= new Date(message.create_time).toLocaleString()%></h5>
+                <a href="/delete">Delete Message</a>
+              </div>
+           </li>
+        <% }) %>
+        </ul>
+      <% } %>

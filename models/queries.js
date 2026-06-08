@@ -173,10 +173,27 @@ async function addMessage(validatedData, messageAuthor) {
     await pool.query(addMessageQuery, [messageTitle, messageContent, currentTime, messageAuthor]);
 
     return console.log("Message added to database.");
-    
+
   } catch (error) {
     throw new Error(error);
   }
+}
+
+// gets all messages from database, exclude the "id" column. Returns the rows array
+async function getAllMessages() {
+  const getAllMessagesQuery = `
+  SELECT 
+    title, 
+    message,
+    create_time, 
+    author 
+  FROM 
+    messages;
+  `;
+
+  const {rows} = await pool.query(getAllMessagesQuery, []);
+
+  return rows;
 }
 
 module.exports = {
@@ -188,4 +205,5 @@ module.exports = {
   getAdminPass,
   makeUserAdmin,
   addMessage,
+  getAllMessages,
 };
