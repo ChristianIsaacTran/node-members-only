@@ -90,3 +90,9 @@ https://www.theodinproject.com/lessons/node-path-nodejs-members-only
 - Admin password: 1010
 
 - both are salted for 10
+
+## hosting and notes
+
+- Going to host this members only project on railway
+
+- Make sure to remake the environment variables, and run tableSetup.js on startup
