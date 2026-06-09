@@ -77,6 +77,9 @@ https://www.theodinproject.com/lessons/node-path-nodejs-members-only
 
 - Going to use a universal salting of 10
 
+- I stored timestamps of messages with locale format of date and time instead of ISO 8601, but next time I would store it
+  into the database as ISO 8601 for universal formatting, then just converting it visually for display if needed.
+
 ## Membership pass and Admin pass
 
 - Will denote the plaintext passwords here, but will store them into
