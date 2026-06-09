@@ -5,6 +5,7 @@ const loginRouter = require("./routers/loginRouter");
 const signupRouter = require("./routers/signupRouter");
 const logoutRouter = require("./routers/logoutRouter");
 const messageRouter = require("./routers/messageRouter");
+const deleteRouter = require("./routers/deleteRouter");
 const membershipRouter = require("./routers/membershipRouter");
 const adminRouter = require("./routers/adminRouter");
 const sessionConfig = require("./config/sessionConfig");
@@ -31,6 +32,7 @@ app.use("/logout", logoutRouter);
 app.use("/membership", membershipRouter);
 app.use("/admin", adminRouter);
 app.use("/message", messageRouter);
+app.use("/delete", deleteRouter);
 
 
 
