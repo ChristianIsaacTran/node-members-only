@@ -36,7 +36,7 @@
               <div class="message-footer-group">
                 <h5><%= message.author %></h5>
                 <h5><%= new Date(message.create_time).toLocaleString()%></h5>
-                <a href="/delete">Delete Message</a>
+                <a href="/delete?messageAuthor=<%=message.author%>&messageTitle=<%=message.title%>&createTime=<%=message.create_time%>" onclick="confirm('Are you sure? This will delete the message from the database.')">Delete Message</a>
               </div>
            </li>
         <% }) %>
@@ -50,7 +50,7 @@
               <p><%= message.message %></p>
               <div class="message-footer-group">
                 <h5><%= new Date(message.create_time).toLocaleString()%></h5>
-                <a href="/delete">Delete Message</a>
+                <a href="/delete?messageAuthor=<%=message.author%>&messageTitle=<%=message.title%>&createTime=<%=message.create_time%>" onclick="confirm('Are you sure? This will delete the message from the database.')">Delete Message</a>
               </div>
            </li>
         <% }) %>

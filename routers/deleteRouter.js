@@ -4,6 +4,6 @@ const deleteController = require("../controllers/deleteController");
 
 const deleteRouter = Router();
 
-deleteRouter.get("/", deleteController.deleteMessage);
+deleteRouter.get("/", deleteController.getDelMessage);
 
 module.exports = deleteRouter;

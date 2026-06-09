@@ -170,10 +170,14 @@ async function addMessage(validatedData, messageAuthor) {
     const messageContent = validatedData.messageContent;
     const currentTime = new Date().toLocaleString(); //current local host machine time stamp with date and time
 
-    await pool.query(addMessageQuery, [messageTitle, messageContent, currentTime, messageAuthor]);
+    await pool.query(addMessageQuery, [
+      messageTitle,
+      messageContent,
+      currentTime,
+      messageAuthor,
+    ]);
 
     return console.log("Message added to database.");
-
   } catch (error) {
     throw new Error(error);
   }
@@ -191,9 +195,36 @@ async function getAllMessages() {
     messages;
   `;
 
-  const {rows} = await pool.query(getAllMessagesQuery, []);
+  const { rows } = await pool.query(getAllMessagesQuery, []);
 
   return rows;
+}
+
+// deletes message from messages table in DB based on message title, author, and creation time
+async function deleteMessage(messageTitle, messageAuthor, messageCreateTime) {
+  try {
+    const deleteMessageQuery = `
+  DELETE
+  FROM messages
+  WHERE 
+  title = $1 AND 
+  author = $2 AND 
+  create_time = $3;
+  `;
+
+  // convert date toLocaleString() format to match in database
+  const formattedDate = new Date(messageCreateTime).toLocaleString();
+
+    await pool.query(deleteMessageQuery, [
+      messageTitle,
+      messageAuthor,
+      formattedDate,
+    ]);
+
+    return console.log("Message deleted from database.");
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
 module.exports = {
@@ -206,4 +237,5 @@ module.exports = {
   makeUserAdmin,
   addMessage,
   getAllMessages,
+  deleteMessage,
 };
